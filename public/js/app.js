@@ -3,8 +3,13 @@ $(function(){
     console.log('Reeeejected!', e);
   };
 
+  navigator.getUserMedia  = navigator.getUserMedia || 
+                         navigator.webkitGetUserMedia ||
+                          navigator.mozGetUserMedia || 
+                           navigator.msGetUserMedia;
+
     // Not showing vendor prefixes.
-  navigator.webkitGetUserMedia({video: true, audio: false}, function(localMediaStream) {
+  navigator.getUserMedia({video: true, audio: false}, function(localMediaStream) {
     var video = document.querySelector('video');
     video.src = window.URL.createObjectURL(localMediaStream);
 
